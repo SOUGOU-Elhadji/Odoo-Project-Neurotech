@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="view_neurotech_facture_form" model="ir.ui.view">
+            <field name="name">neurotech.patient.invoice.form</field>
+            <field name="model">neurotech.patient.invoice</field>
+            <field name="arch" type="xml">
+                <form string="Patient Invoice">
+                    <sheet>
+                            <div class="oe_left">
+                                <div class="oe_title">
+                                    <label for="patient_id" string="Le patient"/>
+                                    <h2>
+                                        <field name="patient_id" class="oe_inline"/>
+                                    </h2>
+                                </div>
+                            </div>
+                            <group>
+                            <group>
+                               <!-- <field name="patient_id"/> -->
+                                <field name="date"/>
+                                <field name="telephone"/>
+                                <field name="email"/>
+                            </group>
+                                <group>
+                               <!-- <field name="patient_id"/> -->
+                                <field name="address_patient"/>
+                                <field name="amount_assurance"/>
+                                <field name="amount_invoice"/>
+                            </group>
+                            </group>
+                        <group string="Lignes de facture">
+                            <field name="product_invoice_ids" nolabel="1">
+                                <tree editable="top">
+                                    <field name="name"/>
+                                    <field name="price"/>
+                                    <field name="qty"/>
+                                    <field name="amount"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+         <!--CREATION VUE LISTE-->
+
+        <record id="neurotech_facture_tree" model="ir.ui.view">
+            <field name="name">neurotech.patient.invoice.tree</field>
+            <field name="model">neurotech.patient.invoice</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="patient_id"/>
+                    <field name="date"/>
+                    <field name="telephone"/>
+                    <field name="email"/>
+                    <field name="address_patient"/>
+                    <field name="amount_assurance"/>
+                    <field name="amount_invoice"/>
+                </tree>
+            </field>
+        </record>
+        <!--CREER UNE ACTION-->
+
+        <record model="ir.actions.act_window" id="action_neurotech_facture_view">
+            <field name="name">Neurotech Patient Invoice</field>
+            <field name="res_model">neurotech.patient.invoice</field>
+            <field name="view_mode">form,tree</field>
+            <field name="view_id" ref="neurotech_facture_tree"/>
+        </record>
+
+
+<!--        <menuitem name="Factures NEUROTECH" id="menu_neurotech_facture_root" web_icon="neurotech_work,static/description/icon.jpg"/>-->
+        <menuitem name="NEUROTECH (Gestion Patient)" id="menu_neurotech_root" web_icon="neurotech_work,static/description/icon.jpg"/>
+        <menuitem name="Factures NEUROTECH"
+                  id="menu_neurotech_facture_main"
+                  parent="menu_neurotech_root"
+		  action = "action_neurotech_facture_view"
+                  sequence="1"/>
+    </data>
+</odoo>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+     <record id="view_nrt_partner_form" model="ir.ui.view">
+            <field name="name">nrt.res.partner</field>
+            <field name="model">res.partner</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="phone" position="after">
+                    <field name="assurance"/>
+                </field>
+            </field>
+     </record>
+
+
+         <!--CREATION VUE LISTE-->
+
+        <record id="neurotech_patient_tree" model="ir.ui.view">
+            <field name="name">neurotech.patient.tree</field>
+            <field name="model">res.partner</field>
+<!--            <field name="model">neurotech.patient</field>-->
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="nameAll"/>
+                    <field name="date"/>
+                    <field name="lieu"/>
+                    <field name="age"/>
+                    <field name="assurance"/>
+                </tree>
+            </field>
+        </record>
+        <!--CREER UNE ACTION-->
+
+        <record model="ir.actions.act_window" id="action_neurotech_patient_view">
+            <field name="name">Neurotech Patient</field>
+            <field name="res_model">res.partner</field>
+<!--            <field name="res_model">neurotech.patient</field>-->
+<!--            <field name="view_type">form</field>-->
+            <field name="view_mode">form,tree</field>
+            <field name="view_id" ref="neurotech_patient_tree"/>
+        </record>
+
+
+<!--        <menuitem name="NEUROTECH (Gestion Patient)" id="menu_neurotech_patient_root"/>-->
+        <menuitem name="NEUROTECH (Gestion Patient)" id="menu_neurotech_root" web_icon="neurotech_work,static/description/icon.jpg"/>
+        <menuitem name="Patients NEUROTECH" id="menu_neurotech_patient_main" parent="menu_neurotech_root"
+		  action = "action_neurotech_patient_view"
+                  sequence="1"/>
+    </data>
+</odoo>

@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_neurotech_assurance,access_neurotech_assurance,model_neurotech_assurance,base.group_user,1,1,1,1
+
+access_neurotech_patient_invoice,access_neurotech_patient_invoice,model_neurotech_patient_invoice,base.group_user,1,1,1,1
+access_neurotech_product_invoice,access_neurotech_product_invoice,model_neurotech_product_invoice,base.group_user,1,1,1,1

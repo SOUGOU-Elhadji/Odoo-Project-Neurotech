@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="view_neurotech_assurance_form" model="ir.ui.view">
+            <field name="name">neurotech.assurance.form</field>
+            <field name="model">neurotech.assurance</field>
+            <field name="arch" type="xml">
+                <form string="Assurances">
+                    <sheet>
+                        <div>
+                            <div class="oe_left">
+                                <div class="oe_title">
+                                    <label for="name" string="Nom Assurance maladie"/>
+                                    <h2>
+                                        <field name="name" class="oe_inline"/>
+                                    </h2>
+                                </div>
+                            </div>
+                            <group>
+                                <field name="address"/>
+				                <field name="date"/>
+                                <field name="reduction"/>
+                            </group>
+                        </div>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+         <!--CREATION VUE LISTE-->
+
+        <record id="neurotech_assurance_tree" model="ir.ui.view">
+            <field name="name">neurotech.assurance.tree</field>
+            <field name="model">neurotech.assurance</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="address"/>
+                    <field name="date"/>
+                    <field name="reduction"/>
+                </tree>
+            </field>
+        </record>
+        <!--CREER UNE ACTION-->
+
+        <record model="ir.actions.act_window" id="action_neurotech_assurance_view">
+            <field name="name">Neurotech Assurance</field>
+            <field name="res_model">neurotech.assurance</field>
+<!--            <field name="view_type">form</field>-->
+            <field name="view_mode">form,tree</field>
+            <field name="view_id" ref="neurotech_assurance_tree"/>
+        </record>
+
+
+<!--        <menuitem name="Assurances NEUROTECH" id="menu_neurotech_assurance_root" web_icon="neurotech_work,static/description/icon.jpg"/>-->
+        <menuitem name="NEUROTECH (Gestion Patient)" id="menu_neurotech_root" web_icon="neurotech_work,static/description/icon.jpg"/>
+        <menuitem name="Assurances NEUROTECH" id="menu_neurotech_assurance_main" parent="menu_neurotech_root"
+		  action = "action_neurotech_assurance_view"
+                  sequence="1"/>
+    </data>
+</odoo>

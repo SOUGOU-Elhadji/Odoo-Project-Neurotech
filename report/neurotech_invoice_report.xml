@@ -1,0 +1,210 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<odoo xmlns:border="http://www.w3.org/1999/xhtml">
+    <!-- GENERER FACTURE -->
+    <report
+        id="nrt_invoice_report"
+        model="neurotech.patient.invoice"
+        string="Facture"
+        name="neurotech_work.invoice_report"
+        file="neurotech_work.invoice_report"
+        report_type="qweb-pdf"/>
+
+
+    <template id="invoice_report_document">
+        <t t-call="web.external_layout">
+        <t t-foreach="docs" t-as="o">
+            <table style="width:1024px; border:0px solid; border-collapse:collapse;">
+                <thead>
+                    <tr  style="border-right:0px solid; background-color : #f1f2f6">
+                        <th style="text-align : center; font-size : 30px">
+                            Facture du Patient
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+
+<!--                <form>-->
+<!--                        <div class="col-m-4"><input type="checkbox" name="choix1" value="1"/> Exemplaire Fournisseur</div>-->
+<!--                        <div class="col-m-4"><input type="checkbox" name="choix2" value="2"/> Exemplaire Achats</div>-->
+<!--                        <div class="col-m-4"><input type="checkbox" name="choix3" value="3"/> Exemplaire Compta</div>-->
+<!--                </form>-->
+
+               <table style="width:1024px; border:; border-collapse:collapse;">
+                   <thead>
+                        <tr style="border-right:">
+                            <th style="text-align :; margin-right : 0px">
+                                <input type="checkbox" name="choix1" value="1"/>    Exemplaire Fournisseur
+                            </th>
+                             <th style="text-align : ; margin-right : 0px">
+                                <input type="checkbox" name="choix2" value="2"/>    Exemplaire Achats
+                            </th>
+                            <th style="text-align :; margin-right : 0px">
+                                <input type="checkbox" name="choix3" value="3"/>    Exemplaire Compta
+                            </th>
+                        </tr>
+                   </thead>
+               </table>
+    <br/>
+            <table style="width:1024px; border:; border-collapse:collapse;">
+        <thead>
+            <tr>
+                <th style="margin-left : 5px">
+<!--                <ul style="list-style : none">-->
+<!--                    <li>Date :</li>-->
+<!--                    <li>Patient :</li>-->
+<!--                    <li>Adresse :</li>-->
+<!--                    <li>Téléphone :</li>-->
+<!--                    <li>Email :</li>-->
+<!--                    <li>Devise :</li>-->
+<!--                </ul>-->
+                    <div>Date :</div>
+                    <div>Patient :</div>
+                    <div>Adresse :</div>
+                    <div>Téléphone :</div>
+                    <div>Email :</div>
+                    <div>Devise :</div>
+                </th>
+
+                <td style="margin-left : 5px">
+<!--                <ul style="list-style : none">-->
+<!--                    <li><span t-field="doc.date"/></li>-->
+<!--                    <li><span t-field="doc.patient_id"/></li>-->
+<!--                    <li><span t-field="doc.address_patient"/></li>-->
+<!--                    <li><span t-field="doc.telephone"/></li>-->
+<!--                    <li><span t-field="doc.email"/></li>-->
+<!--                    <li>FCFA</li>-->
+<!--                </ul>-->
+                    <div><span t-field="doc.date"/></div>
+                    <div><span t-field="doc.patient_id"/></div>
+                    <div><span t-field="doc.address_patient"/></div>
+                    <div><span t-field="doc.telephone"/></div>
+                    <div><span t-field="doc.email"/></div>
+                    <div>FCFA</div>
+                </td>
+
+                <th style="margin-right : 50px">
+<!--                    <ul style="list-style : none; list-style-position : right">-->
+<!--                    <li>Imputation :</li>-->
+<!--                    <li>Numéro BC :</li>-->
+<!--                    <li>Numéro DA :</li>-->
+<!--                    <li>Mode de réglement :</li>-->
+<!--                    <li>Numéro Devis :</li>-->
+<!--                    </ul>-->
+                    <div>Imputation :</div>
+                    <div>Numéro BC :</div>
+                    <div>Numéro DA :</div>
+                    <div>Mode de règlement :</div>
+                    <div>Numéro Devis :</div>
+                </th>
+            </tr>
+        </thead>
+    </table>
+    <br/>
+
+            <table style="width:1024px; border:0px solid; border-collapse:collapse;">
+                <thead>
+                    <tr style="border-right:0px solid; color : white; font-size : 15px; background-color : crimson; width : 30px;">
+                        <th style="border-right:0px solid; width:170px; text-align : center">
+                            DESCRIPTION
+                        </th>
+                        <th style="border-right:0px solid; text-align : center">
+                            QUANTITE
+                        </th>
+                        <th style="border-right:0px solid; width:150px; text-align : center">
+                             PRIX UNITAIRE HT
+                        </th>
+                        <th style="text-align : center; width:170px">
+                            MONTANT HT
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody style="background-color : #f1f2f6">
+                    <tr t-foreach="doc.product_invoice_ids" t-as="l">
+                        <td style="border-right:0px solid ;border-top:0px solid;text-align: center; width:170px"><span t-field="l.name"/></td>
+                        <td style="border-right:0px solid ;border-top:0px solid;text-align: center; width:170px"><span t-field="l.qty"/></td>
+                        <td style="border-right:0px solid ;border-top:0px solid ;text-align: center; margin-left:5px"><span t-field="l.price"/></td>
+                        <td style="border-right:0px solid ;border-top:0px solid ;text-align: center"><span t-field="l.amount"/></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <table style="width:1024px; border:; border-collapse:collapse;">
+        <thead>
+            <tr style="border-right; background-color : #f1f2f6">
+                <th style="text-align :center; margin-left;width:110px">
+                    <ul style="list-style-type : none">
+                        <li>
+                            Approuvé par
+                        </li>
+                    </ul>
+                </th>
+                <th style="text-align :center; width:170px; margin-right :">
+                    <ul style="list-style-type : none">
+                        <li>
+                             Visa DFC
+                        </li>
+                    </ul>
+                </th>
+                <th style="text-align :center; width:170px; margin-right : 10px">
+                    <ul style="list-style-type : none">
+                        <li>
+                            Visa Directeur Général
+                        </li>
+                    </ul>
+                </th>
+            </tr>
+        </thead>
+    </table>
+
+
+            <div class="footer o_standard_footer">
+                <div class="text-center" style="border-top: 1px solid black;">
+                    <ul class="list-inline mb4">
+                        <li class="list-inline-item">
+                            <i class="fa fa-mobile" aria-hidden="true">
+
+                            </i>
+                        </li>
+                        <li class="list-inline-item">
+                              <i class="fa fa-envelope-square" aria-hidden="true">
+
+                            </i>
+                        </li>
+                        <li class="list-inline-item">
+                            <i class="fa fa-globe" aria-hidden="true">
+
+                            </i>
+                        </li>
+                    </ul>
+                    <div t-if="report_type == 'pdf'" class="text-muted">
+                        Page:
+                        <span class="page"/>
+                        /
+                        <span class="topage"/>
+                    </div>
+                </div>
+            </div>
+        </t>
+        </t>
+    </template>
+    <template id="invoice_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="neurotech_work.invoice_report_document" t-lang="doc.patient_id.lang"/>
+            </t>
+        </t>
+    </template>
+</odoo>
+
+
+
